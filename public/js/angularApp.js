@@ -22,6 +22,7 @@ app.controller('shopController', function($scope, $http) {
       // need to add a jQuery function to show a 'item added to cart',
       // to write a test for it happening in the browser and a unit test.
     } else {
+      // need to make a span appear when item is out of stock
       console.log('Item out of stock');
     }
   }
@@ -36,6 +37,8 @@ app.controller('shopController', function($scope, $http) {
     } else {
       $scope.catalogue[productIndex].quantity -= 1;
     }
+    // probably need to find a way send a modified JSON back 
+    // to the server for 'persistence'
   }
 
   $scope.removeFromCart = function(product) {

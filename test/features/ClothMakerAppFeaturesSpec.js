@@ -12,27 +12,30 @@ describe('ClothMaker app', function() {
     expect(productName).toEqual('Almond Toe Court Shoes, Patent Black');
   });
 
-  it('should be able to display an "Add to Cart" button', function() {
-    var addToCartButton = element(by.className('add-to-cart'));
-    expect(addToCartButton.isPresent()).toEqual(true);
-  });
+  describe('cart buttons', function() {
+    var addToCartButton;
+    var removeFromCartButton;
 
-  it('should be able to add an item to the cart', function() {
-    var addToCartButton = element(by.className('add-to-cart'));
-    var removeFromCartButton = element(by.className('remove-from-cart'));
+    beforeEach(function() {
+      addToCartButton = element(by.className('add-to-cart'));
+      removeFromCartButton = element(by.className('remove-from-cart'));
+    });
 
-    addToCartButton.click();
+    it('should be able to display an "Add to Cart" button', function() {
+      expect(addToCartButton.isPresent()).toEqual(true);
+    });
 
-    expect(removeFromCartButton.isPresent()).toEqual(true);
-  });
+    it('should be able to add an item to the cart', function() {
+      addToCartButton.click();
 
-  it('should be able to remove an item from the cart', function() {
-    var addToCartButton = element(by.className('add-to-cart'));
-    var removeFromCartButton = element(by.className('remove-from-cart'));
+      expect(removeFromCartButton.isPresent()).toEqual(true);
+    });
 
-    addToCartButton.click();
-    removeFromCartButton.click();
+    it('should be able to remove an item from the cart', function() {
+      addToCartButton.click();
+      removeFromCartButton.click();
 
-    expect(removeFromCartButton.isPresent()).toEqual(false);
+      expect(removeFromCartButton.isPresent()).toEqual(false);
+    });
   });
 });
