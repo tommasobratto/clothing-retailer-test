@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ClothMaker">
+<head>
+    <meta charset="UTF-8">
+    <title>ClothMaker</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+</head>
+<body>
+
+    <h1>ClothMaker Shop</h1>
+    <div class="wrapper" ng-controller="catalogueController">
+        <div ng-repeat="product in catalogue">
+            <h3 class="product-name">{{product.name}}</h3>
+            <p class="product-category">{{product.category}}</p>
+            <p class="product-price">£{{product.price}}</p>
+            <p class="product-quantity">{{product.quantity}} still available</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="public/js/angularApp.js"></script>
+</body>
+</html>
