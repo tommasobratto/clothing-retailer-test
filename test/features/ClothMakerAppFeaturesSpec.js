@@ -1,4 +1,7 @@
 describe('ClothMaker app', function() {
+  
+  // NOTE: the quantity feature doesn't have tests 
+  // nor a properly written way of storing selected quantity.
 
   beforeEach(function() {
     browser.get('http://localhost:3000');

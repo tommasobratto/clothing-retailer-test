@@ -25,11 +25,20 @@ app.controller('shopController', function($scope, $http) {
 
   $scope.checkStock = function(product) {
     var productIndex = $scope.catalogue.indexOf(product);
-    $scope.catalogue[productIndex].quantity -= 1;
+
+    // BUG: whenever you remove the product from the cart,
+    // it doesn't actually return the original quantity of it
+    if($.inArray(product, $scope.cart) == -1) {
+      $scope.catalogue[productIndex].quantity += 1;
+    } else {
+      $scope.catalogue[productIndex].quantity -= 1;
+    }
   }
 
   $scope.removeFromCart = function(product) {
     var productIndex = $scope.cart.indexOf(product);
     $scope.cart.splice(productIndex, 1);
+
+    $scope.checkStock(product);
   } 
 });
