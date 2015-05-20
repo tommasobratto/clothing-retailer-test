@@ -15,6 +15,10 @@ describe('ClothMaker App', function() {
     ctrl = $controller('shopController', { $scope: scope });
   }));
 
+  it('should initialise with an empty catalogue', function() {
+    expect(scope.catalogue).toEqual([]);
+  });
+
   it('should be able to add an item to the cart', function() {
     scope.catalogue.push(product);
     scope.addToCart(scope.catalogue[0]);
