@@ -1,13 +1,16 @@
 var app = angular.module('ClothMaker', []);
 
 app.controller('shopController', function($scope, $http) {
+  $scope.catalogue = [];
   $scope.cart = [];
 
-  var APIRequest = $http.get('http://localhost:3000/api');
+  $scope.callAPI = function() {
+    var APIRequest = $http.get('http://localhost:3000/api');
 
-  APIRequest.then(function(response) {
-    $scope.catalogue = response.data;
-  });
+    APIRequest.then(function(response) {
+      $scope.catalogue = response.data;
+    });
+  };
 
   $scope.addToCart = function(product) {
     if(product.quantity > 0) {
@@ -41,4 +44,8 @@ app.controller('shopController', function($scope, $http) {
 
     $scope.checkStock(product);
   } 
+
+  $(document).ready(function() {
+    $scope.callAPI();
+  });
 });
