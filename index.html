@@ -20,9 +20,9 @@
                 <h4>this item is discounted</h4>
             </span>
             <span ng-hide="isOutOfStock(product)">
-                <ngcart-addtocart id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}">Add to Cart</ngcart-addtocart>
+                <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}">Add to Cart</ngcart-addtocart>
             </span>
-            <h4 ng-show="isOutOfStock(product)">item out of stock</h4>
+            <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
         </div>
     </div>
 
