@@ -28,6 +28,9 @@
 
     <ngcart-cart></ngcart-cart>
 
+    <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data -->
+    <ngcart-checkout service="http" settings="{ url:'/checkout' }"></ngcart-checkout>
+
     <script type="text/javascript" src="public/js/angularApp.js"></script>
 </body>
 </html>

@@ -17,6 +17,11 @@ app.get('/api', function(req, res) {
   res.status(200).json(catalogue);
 });
 
+app.post('/checkout', function(req, res) {
+  // mock of a post request to the server with cart data;
+  console.log(req.body.data.items);
+});
+
 app.listen(process.env.PORT || 3000, function() {
   console.log('server listening on port 3000');
 });

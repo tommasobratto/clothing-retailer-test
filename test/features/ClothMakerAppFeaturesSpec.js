@@ -24,7 +24,7 @@ describe('ClothMaker app', function() {
       expect(addToCartButton.isPresent()).toEqual(true);
     });
 
-    // Have to find a way to target ngCart stuff.
+    // Have to find a way to target ngCart-cart stuff.
     // it('should be able to add an item to the cart', function() {
     //   addToCartButton.click();
     //    expect.().toEqual();
