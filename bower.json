@@ -1,0 +1,18 @@
+{
+  "name": "deloitte-tech-test",
+  "version": "0.0.0",
+  "authors": [
+    "tommasobratto <tbratto22@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngcart": "~0.0.3-rc.2"
+  }
+}

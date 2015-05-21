@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ClothMaker">
+<head>
+    <meta charset="UTF-8">
+    <title>ClothMaker</title>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/ngcart/dist/ngCart.js"></script>
+</head>
+<body ng-controller="shopController">
+
+    <h1>ClothMaker Shop</h1>
+    <div class="wrapper">
+        <div ng-repeat="product in catalogue">
+            <h3 class="product-name">{{product.name}}</h3>
+            <p class="product-category">{{product.category}}</p>
+            <p class="product-price">£{{product.price.toFixed(2)}}</p>
+            <p class="product-quantity">{{product.quantity}} still available</p>
+            <ngcart-addtocart id="{{ product.quantity }}"
+            name="{{ product.name }}" price="{{ product.price.toFixed(2) }}" quantity="1" quantity-max = "{{ product.quantity }}">Add to Cart</ngcart-addtocart>
+        </div>
+    </div>
+
+    <ngcart-cart></ngcart-cart>
+
+    <script type="text/javascript" src="public/js/angularApp.js"></script>
+</body>
+</html>

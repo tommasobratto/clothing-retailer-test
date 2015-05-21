@@ -1,4 +1,4 @@
-var app = angular.module('ClothMaker', []);
+var app = angular.module('ClothMaker', ['ngCart']);
 
 app.controller('shopController', function($scope, $http) {
   $scope.catalogue = [];
@@ -9,44 +9,34 @@ app.controller('shopController', function($scope, $http) {
 
     APIRequest.then(function(response) {
       $scope.catalogue = response.data;
+      $scope.checkCatalogue($scope.isOutOfStock);
+      $scope.checkCatalogue($scope.isDiscounted);
     });
   };
 
-  $scope.addToCart = function(product) {
-    if(product.quantity > 0) {
-      if($.inArray(product, $scope.cart) === -1)   {
-        $scope.cart.push(product);
-      } 
-      
-      $scope.checkStock(product);
-      // need to add a jQuery function to show a 'item added to cart',
-      // to write a test for it happening in the browser and a unit test.
+  $scope.checkCatalogue = function(check) {
+    $scope.catalogue.forEach(function(product) {
+      check(product);
+    });
+  }
+
+  $scope.isDiscounted = function(product) {
+    if(product.discounted_price != undefined) {
+      product.price = product.discounted_price;
+
+      return true;
     } else {
-      // need to make a span appear when item is out of stock
-      console.log('Item out of stock');
+      return false;
     }
   }
 
-  $scope.checkStock = function(product) {
-    var productIndex = $scope.catalogue.indexOf(product);
-
-    // BUG: whenever you remove the product from the cart,
-    // it doesn't actually return the original quantity of it
-    if($.inArray(product, $scope.cart) == -1) {
-      $scope.catalogue[productIndex].quantity += 1;
+  $scope.isOutOfStock = function(product) {
+    if(product.quantity === 0) {
+      return true;
     } else {
-      $scope.catalogue[productIndex].quantity -= 1;
+      return false;
     }
-    // probably need to find a way send a modified JSON back 
-    // to the server for 'persistence'
   }
-
-  $scope.removeFromCart = function(product) {
-    var productIndex = $scope.cart.indexOf(product);
-    $scope.cart.splice(productIndex, 1);
-
-    $scope.checkStock(product);
-  } 
 
   $(document).ready(function() {
     $scope.callAPI();

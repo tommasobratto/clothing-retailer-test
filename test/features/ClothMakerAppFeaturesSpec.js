@@ -1,8 +1,5 @@
 describe('ClothMaker app', function() {
   
-  // NOTE: the quantity feature doesn't have tests 
-  // nor a properly written way of storing selected quantity.
-
   beforeEach(function() {
     browser.get('http://localhost:3000');
   });
@@ -27,8 +24,7 @@ describe('ClothMaker app', function() {
 
     it('should be able to add an item to the cart', function() {
       addToCartButton.click();
-
-      expect(removeFromCartButton.isPresent()).toEqual(true);
+       expect(removeFromCartButton.isPresent()).toEqual(true);
     });
 
     it('should be able to remove an item from the cart', function() {
@@ -36,6 +32,12 @@ describe('ClothMaker app', function() {
       removeFromCartButton.click();
 
       expect(removeFromCartButton.isPresent()).toEqual(false);
+    });
+
+    it('should be able to show the new quantity of items in catalogue', function() {
+      var productQuantity = element(by.className('product-quantity')).getText();
+      addToCartButton.click();
+      expect(productQuantity).toEqual('4 still available');
     });
   });
 });

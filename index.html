@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>ClothMaker</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/ngcart/dist/ngCart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.3/immutable.js"></script>
 </head>
 <body ng-controller="shopController">
 
     <h1>ClothMaker Shop</h1>
     <div class="wrapper">
         <div ng-repeat="product in catalogue">
-            <h3 class="product-name">{{product.name}}</h3>
-            <p class="product-category">{{product.category}}</p>
-            <p class="product-price">£{{product.price.toFixed(2)}}</p>
-            <p class="product-quantity">{{product.quantity}} still available</p>
-            <button class="add-to-cart" ng-click="addToCart(product)">Add to Cart</button>
-            <!-- define an ng-show directive in controller to make this span appear -->
- <!--            <span ng-show="">
-                <p class="item-added">This item has been added</p>
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-category">{{ product.category }}</p>
+            <p class="product-price">£{{ product.price.toFixed(2) }}</p>
+            <span ng-show="isDiscounted(product)">
+                <h4>this item is discounted</h4>
             </span>
- -->        </div>
-    </div>
-
-    <div class="cart"> 
-    <h2>Cart</h2>
-        <div ng-repeat="product in cart">
-            <h3 class="product-name">{{product.name}}</h3>
-            <p class="product-price">£{{product.price.toFixed(2)}}</p>
-            <button class="remove-from-cart" ng-click="removeFromCart(product)">Remove from Cart</button>
+            <span ng-hide="isOutOfStock(product)">
+                <ngcart-addtocart id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}">Add to Cart</ngcart-addtocart>
+            </span>
+            <h4 ng-show="isOutOfStock(product)">item out of stock</h4>
         </div>
     </div>
+
+    <ngcart-cart></ngcart-cart>
 
     <script type="text/javascript" src="public/js/angularApp.js"></script>
 </body>

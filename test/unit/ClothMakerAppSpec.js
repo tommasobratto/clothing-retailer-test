@@ -1,5 +1,5 @@
 describe('ClothMaker App', function() {
-  beforeEach(module('ClothMaker'));
+  beforeEach(module('ClothMaker'), module('ngCart'));
 
   var ctrl;
 
@@ -17,12 +17,6 @@ describe('ClothMaker App', function() {
 
   it('should initialise with an empty catalogue', function() {
     expect(scope.catalogue).toEqual([]);
-  });
-
-  it('should be able to add an item to the cart', function() {
-    scope.catalogue.push(product);
-    scope.addToCart(scope.catalogue[0]);
-    expect(scope.cart[0]).toEqual(product);
   });
 
   describe('app calls API', function() {
