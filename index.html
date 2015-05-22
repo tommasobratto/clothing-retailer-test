@@ -6,7 +6,6 @@
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/ngcart/dist/ngCart.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.3/immutable.js"></script>
 </head>
 <body ng-controller="shopController">
 
@@ -20,17 +19,24 @@
                 <h4>this item is discounted</h4>
             </span>
             <span ng-hide="isOutOfStock(product)">
-                <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}">Add to Cart</ngcart-addtocart>
+                <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}" ng-click="setCategory(product.id, product.category)">Add to Cart</ngcart-addtocart>
             </span>
             <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
         </div>
     </div>
 
     <ngcart-cart></ngcart-cart>
+        <ul class="discount-buttons">
+            <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button></li>
+            <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button></li>
+            <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button></li>
+        </li>
+    <p class="not-eligible" ng-show="notEligible">This discount is not eligible</p>
 
-    <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data -->
-    <ngcart-checkout service="http" settings="{ url:'/checkout' }"></ngcart-checkout>
+    <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
+    <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
 
     <script type="text/javascript" src="public/js/angularApp.js"></script>
+    <script type="text/javascript" src="public/js/polyfill.js"></script>
 </body>
 </html>
