@@ -57,7 +57,6 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
       $scope.discount = -5;
       ngCart.setDiscount($scope.discount);
     } else {
-      console.log('false');
       $scope.notEligible = true;
     }
   }
@@ -67,7 +66,6 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
       $scope.discount = -10;
       ngCart.setDiscount($scope.discount);
     } else {
-      console.log('false');
       $scope.notEligible = true;
     }
   }
@@ -77,19 +75,8 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
       $scope.discount = -15;
       ngCart.setDiscount($scope.discount);
     } else {
-      console.log('false');
       $scope.notEligible = true;
     }
-  }
-
-  $scope.checkCategory = function(cartItems) {
-    cartItems.forEach(function(item) {
-      var category = item.getData();
-      // the includes method isn't working
-      if(category.includes(this, /footwear/i)) {
-        return true;
-      } 
-    });
   }
 
   $scope.setCategory = function(productId, productCategory) {
@@ -97,6 +84,22 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
     if(item) {
       item.setData(productCategory);
     } 
+  }
+
+  $scope.checkCategory = function(cartItems) {
+    var category;
+    var footwearNum = 0;
+
+    cartItems.forEach(function(item) {
+      category = item.getData();
+      if(category.includes('Footwear')) {
+        footwearNum += 1;
+      }
+    });
+
+    if(footwearNum > 0) {
+      return true;
+    }
   }
 
   $(document).ready(function() {

@@ -68,20 +68,19 @@ describe('ClothMaker App', function() {
     });
 
     it('should be able to check for and apply a discount for an order', function() {
-      discount = 'off-order-discount';
-      scope.isEligible(discount);
+      // need to find a way to mock $event
+      $event.target.id = "off-order-discount";
+      scope.isEligible($event);
       expect(scope.discount).toEqual(-5);
     });
 
     it('should be able to apply a discount if the total price is greater than 50', function() {
-      discount = '10£-discount';
-      scope.isEligible(discount);
+      scope.isEligible($event);
       expect(scope.discount).toEqual(-10);
     });
 
     it('should apply a discount if the total price is greater than 75 and the item category is footwear', function() {
-      discount = '15£-discount';
-      scope.isEligible(discount);
+      scope.isEligible($event);
       expect(scope.discount).toEqual(-15);
     });
   });
