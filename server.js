@@ -1,9 +1,11 @@
 var express = require('express');
 var app = express();
+var cors = require('cors');
 var bodyParser = require('body-parser');
 
 var catalogue = require('./products.json')["catalogue"];
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 app.use(express.static(__dirname + '/views'));

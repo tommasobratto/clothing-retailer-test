@@ -27,11 +27,17 @@
 
     <ngcart-cart></ngcart-cart>
         <ul class="discount-buttons">
-            <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button></li>
-            <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button></li>
-            <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button></li>
+            <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button>
+                <p>Note: this discount is applicable if you've made at least one order</p>
+            </li>
+            <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button>
+                <p>Note: this discount is applicable if your order is more than 50£</p>
+            </li>
+            <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button>
+                <p>Note: this discount is applicable if your order is more than 75£ and you have chosen at least one footwear item</p>
+            </li>
         </li>
-    <p class="not-eligible" ng-show="notEligible">This discount is not eligible</p>
+    <p id="not-eligible" ng-show="notEligible">This discount is not eligible</p>
 
     <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
     <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
