@@ -1,5 +1,10 @@
 var app = angular.module('ClothMaker', ['ngCart']);
 
+app.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}]);
+
 app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
   $scope.catalogue = [];
   $scope.cart = [];
@@ -71,7 +76,7 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
   }
 
   $scope.apply15Discount = function(cartItems, totalPrice) {
-    if($scope.checkCategory(cartItems) && totalPrice > 75) {
+    if($scope.hasFootwear(cartItems) && totalPrice > 75) {
       $scope.discount = -15;
       ngCart.setDiscount($scope.discount);
     } else {
@@ -86,7 +91,7 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
     } 
   }
 
-  $scope.checkCategory = function(cartItems) {
+  $scope.hasFootwear = function(cartItems) {
     var category;
     var footwearNum = 0;
 

@@ -21,7 +21,7 @@ app.get('/api', function(req, res) {
 
 app.post('/checkout', function(req, res) {
   // mock of a post request to the server with cart data;
-  console.log(req.body.data.items);
+  console.log(req.body.data);
 });
 
 app.listen(process.env.PORT || 3000, function() {
