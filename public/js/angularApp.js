@@ -1,10 +1,5 @@
 var app = angular.module('ClothMaker', ['ngCart']);
 
-app.config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
-}]);
-
 app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
   $scope.catalogue = [];
   $scope.cart = [];

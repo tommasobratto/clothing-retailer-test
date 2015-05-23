@@ -43,47 +43,5 @@ describe('ClothMaker App', function() {
       httpBackend.verifyNoOutstandingRequest();
     });
   });
-
-  // describe('checking for discounts', function() {
-  //   var ngCart;
-  //   var discountButton;
-  //   var cart;
-  //   var totalPrice;
-  //   var $event;
-
-  //   beforeEach(function() {
-  //     cart = [];
-  //     cart.push(product);
-
-  //     // mock ngCart methods
-  //     ngCart = {
-  //       getItems: function() {
-  //         return cart;
-  //       },
-  //       getSubTotal: function() {
-  //         totalPrice = cart[0].price;
-
-  //         return totalPrice;
-  //       }
-  //     }
-  //   });
-
-  //   it('should be able to check for and apply a discount for an order', function() {
-  //     // need to find a way to mock $event
-  //     scope.isEligible($event);
-  //     console.log($event.target);
-  //     expect(scope.discount).toEqual(-5);
-  //   });
-
-  //   it('should be able to apply a discount if the total price is greater than 50', function() {
-  //     scope.isEligible(event);
-  //     expect(scope.discount).toEqual(-10);
-  //   });
-
-  //   it('should apply a discount if the total price is greater than 75 and the item category is footwear', function() {
-  //     scope.isEligible($event);
-  //     expect(scope.discount).toEqual(-15);
-  //   });
-  // });
 });
 
