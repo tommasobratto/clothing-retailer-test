@@ -2,27 +2,65 @@
 <html lang="en" ng-app="ClothMaker">
 <head>
     <meta charset="UTF-8">
-    <title>ClothMaker</title>
-    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
-    <script type="text/javascript" src="bower_components/ngcart/dist/ngCart.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ClothMaker Shop</title>
+
+    <link rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" src="public/css/style.css"/>
 </head>
 <body ng-controller="shopController">
 
-    <h1>ClothMaker Shop</h1>
-    <div class="wrapper">
-        <div ng-repeat="product in catalogue">
-            <h3 class="product-name">{{product.name}}</h3>
-            <p class="product-category">{{product.category}}</p>
-            <p class="product-price">£{{product.price.toFixed(2)}}</p>
-            <p class="product-quantity">{{product.quantity}} still available</p>
-            <ngcart-addtocart id="{{ product.quantity }}"
-            name="{{ product.name }}" price="{{ product.price.toFixed(2) }}" quantity="1" quantity-max = "{{ product.quantity }}">Add to Cart</ngcart-addtocart>
+  <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">ClothMaker Shop</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div ng-repeat="product in catalogue">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-category">{{ product.category }}</p>
+                <p class="product-price">£{{ product.price.toFixed(2) }}</p>
+                <span ng-show="isDiscounted(product)">
+                    <h4>this item is discounted</h4>
+                </span>
+                <span ng-hide="isOutOfStock(product)">
+                    <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}" ng-click="setCategory(product.id, product.category)">Add to Cart</ngcart-addtocart>
+                </span>
+                <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
+            </div>
         </div>
     </div>
 
     <ngcart-cart></ngcart-cart>
+        <ul class="discount-buttons">
+            <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button>
+                <p>Note: this discount is applicable if you've made at least one order</p>
+            </li>
+            <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button>
+                <p>Note: this discount is applicable if your order is more than 50£</p>
+            </li>
+            <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button>
+                <p>Note: this discount is applicable if your order is more than 75£ and you have chosen at least one footwear item</p>
+            </li>
+        </li>
+    <p id="not-eligible" ng-show="notEligible">This discount is not eligible</p>
 
-    <script type="text/javascript" src="public/js/angularApp.js"></script>
+    <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
+    <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
+
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="ngcart/dist/ngCart.js"></script>
+    <script type="text/javascript" src="js/angularApp.js"></script>
+    <script type="text/javascript" src="js/polyfill.js"></script>
 </body>
 </html>

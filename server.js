@@ -2,10 +2,12 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-var catalogue = require('./products.json')["catalogue"];
+var catalogue = require('./storage/products.json')["catalogue"];
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/storage'));
+app.use(express.static(__dirname + '/bower_components'));
+app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/public'));
 
