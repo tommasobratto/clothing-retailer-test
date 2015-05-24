@@ -8,11 +8,6 @@
     <title>ClothMaker Shop</title>
 
     <link rel="stylesheet" href="css/style.css" />
-    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="angular/angular.js"></script>
-    <script type="text/javascript" src="ngcart/dist/ngCart.js"></script>
-    <script type="text/javascript" src="js/angularApp.js"></script>
-    <script type="text/javascript" src="js/polyfill.js"></script>
 </head>
 <body ng-controller="shopController">
 
@@ -25,27 +20,27 @@
       </div>
     </nav>
   </header>
-
-      <div class="items panel col-md-6">
-        <div class="block">
-            <div ng-repeat="product in catalogue">
-                <h3 class="product-name">{{ product.name }}</h3>
-                <p class="product-category">{{ product.category }}</p>
-                <p class="product-price">£{{ product.price.toFixed(2) }}</p>
-                <span ng-show="isDiscounted(product)">
-                    <h4>this item is discounted</h4>
-                </span>
-                <span ng-hide="isOutOfStock(product)">
-                    <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}" ng-click="setCategory(product.id, product.category)">Add to Cart</ngcart-addtocart>
-                </span>
-                <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
-            </div>
+  
+  <main>
+    <div class="items panel col-md-6">
+      <div class="block">
+          <div ng-repeat="product in catalogue">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-category">{{ product.category }}</p>
+            <p class="product-price">£{{ product.price.toFixed(2) }}</p>
+            <span ng-show="isDiscounted(product)">
+                <h4>this item is discounted</h4>
+            </span>
+            <span ng-hide="isOutOfStock(product)">
+                <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}" ng-click="setCategory(product.id, product.category)">Add to Cart</ngcart-addtocart>
+            </span>
+            <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
         </div>
-        </div>
-<!--         </div>
+      </div>
     </div>
- -->
-  <div class="container"></div>
+  </main>
+
+  <div class="col-md-6">
     <h1>Your Cart</h1>
       <ngcart-cart></ngcart-cart>
           <ul class="discount-buttons">
@@ -64,5 +59,10 @@
       <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
       <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
     </div>
+  <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="angular/angular.js"></script>
+  <script type="text/javascript" src="ngcart/dist/ngCart.js"></script>
+  <script type="text/javascript" src="js/angularApp.js"></script>
+  <script type="text/javascript" src="js/polyfill.js"></script>
 </body>
 </html>
