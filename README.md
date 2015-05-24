@@ -63,3 +63,7 @@ cart.
 - Server-side: Node.js Express API server, serving a static JSON file.
 - Client-side: Angular.js to query the API server for the catalogue, client-side business and view logic, ngCart module for Angular for the eCommerce-style shopping cart logic
 - Styling: Bootstrap 3/Bootswatch Cerulean Theme
+
+### Screenshot
+
+[ClothMaker Shop](screenshot/website-screenshot.png)
