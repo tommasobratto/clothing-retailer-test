@@ -43,6 +43,7 @@ This project is a test to create an eCommerce/online clothing retailer website, 
 │       └── ClothMakerAppSpec.js
 └── views
     └── index.html
+```
 
 ### User Stories
 As a User I can view the products and their category, price and availability information.
