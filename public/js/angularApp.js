@@ -1,5 +1,7 @@
 var app = angular.module('ClothMaker', ['ngCart']);
 
+/* The ngCart object contains information about the cart contents and methods
+ * to retrieve them */
 app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
   $scope.catalogue = [];
   $scope.cart = [];
@@ -41,7 +43,7 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
 
   $scope.isEligible = function($event) {
     var discountType = $event.target.id;
-    var totalPrice = ngCart.getSubTotal(); 
+    var totalPrice = ngCart.getSubTotal();
     var cartItems = ngCart.getItems();
     $scope.notEligible = false;
 

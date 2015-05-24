@@ -7,7 +7,6 @@ var catalogue = require('./storage/products.json')["catalogue"];
 app.use(bodyParser.json());
 app.use(express.static('storage'));
 app.use(express.static('bower_components'));
-app.use(express.static('node_modules'));
 app.use(express.static('views'));
 app.use(express.static('public'));
 

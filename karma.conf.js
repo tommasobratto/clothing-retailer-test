@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
       './node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
-      './node_modules/jquery/dist/jquery.js',
+      './bower_components/jquery/dist/jquery.js',
       './bower_components/ngcart/dist/ngCart.js',
       './public/js/*.js',
       './test/**/*Spec.js'
