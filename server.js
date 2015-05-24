@@ -5,11 +5,11 @@ var bodyParser = require('body-parser');
 var catalogue = require('./storage/products.json')["catalogue"];
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/storage'));
-app.use(express.static(__dirname + '/bower_components'));
-app.use(express.static(__dirname + '/node_modules'));
-app.use(express.static(__dirname + '/views'));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('storage'));
+app.use(express.static('bower_components'));
+app.use(express.static('node_modules'));
+app.use(express.static('views'));
+app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   res.render('index.html')

@@ -10,6 +10,8 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
 
     APIRequest.then(function(response) {
       $scope.catalogue = response.data;
+      console.log($scope.catalogue);
+      console.log("catalogue fetched from API");
     });
   };
 

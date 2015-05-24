@@ -7,8 +7,12 @@
 
     <title>ClothMaker Shop</title>
 
-    <link rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
-    <link rel="stylesheet" src="public/css/style.css"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="ngcart/dist/ngCart.js"></script>
+    <script type="text/javascript" src="js/angularApp.js"></script>
+    <script type="text/javascript" src="js/polyfill.js"></script>
 </head>
 <body ng-controller="shopController">
 
@@ -22,8 +26,8 @@
     </nav>
   </header>
 
-    <div class="jumbotron">
-        <div class="container">
+      <div class="items panel col-md-6">
+        <div class="block">
             <div ng-repeat="product in catalogue">
                 <h3 class="product-name">{{ product.name }}</h3>
                 <p class="product-category">{{ product.category }}</p>
@@ -37,30 +41,28 @@
                 <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
             </div>
         </div>
+        </div>
+<!--         </div>
     </div>
+ -->
+  <div class="container"></div>
+    <h1>Your Cart</h1>
+      <ngcart-cart></ngcart-cart>
+          <ul class="discount-buttons">
+              <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button>
+                  <p>Note: this discount is applicable if you've made at least one order</p>
+              </li>
+              <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button>
+                  <p>Note: this discount is applicable if your order is more than 50£</p>
+              </li>
+              <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button>
+                  <p>Note: this discount is applicable if your order is more than 75£ and you have chosen at least one footwear item</p>
+              </li>
+          </ul>
+      <h4 id="not-eligible" ng-show="notEligible">This discount is not eligible</h4>
 
-    <ngcart-cart></ngcart-cart>
-        <ul class="discount-buttons">
-            <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button>
-                <p>Note: this discount is applicable if you've made at least one order</p>
-            </li>
-            <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button>
-                <p>Note: this discount is applicable if your order is more than 50£</p>
-            </li>
-            <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button>
-                <p>Note: this discount is applicable if your order is more than 75£ and you have chosen at least one footwear item</p>
-            </li>
-        </li>
-    <p id="not-eligible" ng-show="notEligible">This discount is not eligible</p>
-
-    <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
-    <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
-
-    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="angular/angular.js"></script>
-    <script type="text/javascript" src="ngcart/dist/ngCart.js"></script>
-    <script type="text/javascript" src="js/angularApp.js"></script>
-    <script type="text/javascript" src="js/polyfill.js"></script>
+      <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
+      <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
+    </div>
 </body>
 </html>
