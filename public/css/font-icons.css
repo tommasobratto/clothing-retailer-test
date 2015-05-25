@@ -3,3 +3,7 @@
   src: url('/bootstrap/fonts/glyphicons-halflings-regular.ttf');
   src: url('/bootstrap/fonts/glyphicons-halflings-regular.woff');
 }
+
+.discount-buttons {
+  list-style-type: none;
+}

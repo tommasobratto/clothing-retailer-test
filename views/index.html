@@ -13,52 +13,54 @@
 <body ng-controller="shopController">
 
   <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand">ClothMaker Shop</a>
-        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand">ClothMaker Shop</a>
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </div>
   </header>
 
   <main>
-    <div class="items panel col-md-6">
-      <div class="block">
-          <div ng-repeat="product in catalogue">
-            <h3 class="product-name">{{ product.name }}</h3>
-            <p class="product-category">{{ product.category }}</p>
-            <p class="product-price">£{{ product.price.toFixed(2) }}</p>
-            <span ng-show="isDiscounted(product)">
-                <h4>this item is discounted</h4>
-            </span>
-            <span ng-hide="isOutOfStock(product)">
-                <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}" ng-click="setCategory(product.id, product.category)">Add to Cart</ngcart-addtocart>
-            </span>
-            <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
-        </div>
+    <div class="col-md-6">
+      <div ng-repeat="product in catalogue">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-category">{{ product.category }}</p>
+        <p class="product-price">£{{ product.price.toFixed(2) }}</p>
+        <span ng-show="isDiscounted(product)">
+            <h4>this item is discounted</h4>
+        </span>
+        <span ng-hide="isOutOfStock(product)">
+            <ngcart-addtocart class="add-to-cart" id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}" quantity="1" quantity-max = "{{ product.quantity }}" ng-click="setCategory(product.id, product.category)">Add to Cart</ngcart-addtocart>
+        </span>
+        <h4 class="out-of-stock" ng-show="isOutOfStock(product)">item out of stock</h4>
       </div>
     </div>
   </main>
 
-  <div class="col-md-6">
-    <h1>Your Cart</h1>
-      <ngcart-cart></ngcart-cart>
-          <ul class="discount-buttons">
-              <li><button id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button>
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Your Cart</h1>
+        <ngcart-cart></ngcart-cart>
+          <hr>
+            <ul class="discount-buttons">
+              <li><button class="btn btn-primary" id="off-order-discount" ng-click="isEligible($event)">Apply for an off-order discount</button></li>
                   <p>Note: this discount is applicable if you've made at least one order</p>
-              </li>
-              <li><button id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button>
+              <li><button class="btn btn-primary" id="10£-discount" ng-click="isEligible($event)">Apply for a 10£ discount</button></li>
                   <p>Note: this discount is applicable if your order is more than 50£</p>
-              </li>
-              <li><button id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button>
+              <li><button class="btn btn-primary" id="15£-discount" ng-click="isEligible($event)">Apply for a 15£ discount</button></li>
                   <p>Note: this discount is applicable if your order is more than 75£ and you have chosen at least one footwear item</p>
-              </li>
-          </ul>
-      <h4 id="not-eligible" ng-show="notEligible">This discount is not eligible</h4>
+            </ul>
+        <h4 id="not-eligible" ng-show="notEligible">This discount is not eligible</h4>
 
-      <!-- ngcart-checkout is mocking a post request to '/checkout', sending the cart data to the server -->
-      <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
+        <!-- ngcart-checkout is making a post request to '/checkout', sending the cart data to the server -->
+        <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
+      </div>
     </div>
 
   <script src="jquery/dist/jquery.min.js"></script>
