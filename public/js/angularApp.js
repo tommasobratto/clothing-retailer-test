@@ -41,11 +41,11 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
     }
   }
 
-  $scope.setCategory = function(productId, productCategory) {
+  $scope.setCategory = function(productId, productCategory) {    
     var item = ngCart.getItemById(productId.toString());
     if(item) {
       item.setData(productCategory);
-    } 
+    }
   }
 
   $scope.isEligible = function($event) {
@@ -105,6 +105,11 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
       return true;
     }
   }
+
+  $scope.$on('ngCart:change', function() {
+    $scope.discount = 0;
+    ngCart.setDiscount($scope.discount);
+  });
 
   $(document).ready(function() {
     $scope.callAPI();
