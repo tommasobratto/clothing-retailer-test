@@ -4,7 +4,7 @@ This project is a test to create an eCommerce/online clothing retailer website, 
 ### Instructions
 - Clone the repo
 - In your command line, type: ``` npm install ``` to install Express and relative test frameworks
-- type: ``` bower install ``` to install Bootstrap, Angular.js and ngCart 
+- type: ``` bower install ``` to install Bootstrap and Angular.js 
 - run feature tests by typing (if you have Selenium WebServer installed): ``` webdriver-manager update```, ``` webdriver-manager start ``` and ``` protractor conf.js ```
 - run server tests by typing ``` node server.js ``` then ``` mocha test ```
 - run client unit tests by typing ``` karma start ```
