@@ -3,6 +3,7 @@ This project is a test to create an eCommerce/online clothing retailer website, 
 
 ### Instructions
 - Clone the repo by typing: ``` git clone git@github.com:tommasobratto/clothing-retailer-test.git ```
+- Change directory by typing: ``` cd clothing-retailer-test ```
 - In your command line, type: ``` npm install ``` to install Express and relative test frameworks
 - type: ``` bower install ``` to install Bootstrap and Angular.js 
 - run feature tests by typing (you need a [JVM runtime](https://java.com/en/download/) to run "webdriver-manager"): ``` webdriver-manager update```, ``` webdriver-manager start ``` and ``` protractor conf.js ```
