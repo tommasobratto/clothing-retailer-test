@@ -66,4 +66,4 @@ cart.
 
 ### Screenshot
 
-[ClothMaker Shop](screenshot/website-screenshot.png)
+![ClothMaker Shop](screenshot/website-screenshot.png)
