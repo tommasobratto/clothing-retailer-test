@@ -60,7 +60,7 @@ cart.
 - As a User I am unable to add "Out of Stock" products to the shopping cart.
 
 ### Technology
-- Server-side: Node.js Express API server, serving a static JSON file.
+- Server-side: Node.js Express API server, serving a static JSON file containing the catalogue.
 - Client-side: Angular.js to query the API server for the catalogue, client-side business and view logic, ngCart module for Angular for the eCommerce-style shopping cart logic
 - Styling: Bootstrap 3/Bootswatch Cerulean Theme
 
