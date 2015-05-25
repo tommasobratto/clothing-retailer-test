@@ -4,8 +4,8 @@ var app = angular.module('ClothMaker', ['ngCart']);
  * to retrieve them */
 app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
   $scope.catalogue = [];
-  $scope.cart = [];
   $scope.discount;
+  $scope.notEligible;
 
   $scope.callAPI = function() {
     var APIRequest = $http.get('http://localhost:3000/api');
@@ -39,6 +39,13 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
     } else {
       return false;
     }
+  }
+
+  $scope.setCategory = function(productId, productCategory) {
+    var item = ngCart.getItemById(productId.toString());
+    if(item) {
+      item.setData(productCategory);
+    } 
   }
 
   $scope.isEligible = function($event) {
@@ -81,13 +88,6 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
     } else {
       $scope.notEligible = true;
     }
-  }
-
-  $scope.setCategory = function(productId, productCategory) {
-    var item = ngCart.getItemById(productId.toString());
-    if(item) {
-      item.setData(productCategory);
-    } 
   }
 
   $scope.hasFootwear = function(cartItems) {
