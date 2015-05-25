@@ -64,6 +64,9 @@ cart.
 - Client-side: Angular.js to query the API server for the catalogue, client-side business and view logic, ngCart module for Angular for the eCommerce-style shopping cart logic
 - Styling: Bootstrap 3/Bootswatch Cerulean Theme
 
+### Known Bugs
+- On the cart you can currently add more than the maximum quantity shown on the catalogue.
+
 ### Screenshot
 
 ![ClothMaker Shop](screenshot/website-screenshot.png)
