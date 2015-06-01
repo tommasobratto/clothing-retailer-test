@@ -22,6 +22,14 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
       check(product);
     });
   }
+  
+  $scope.isOutOfStock = function(product) {
+    if(product.quantity === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   $scope.isDiscounted = function(product) {
     if(product.discounted_price) {
@@ -33,19 +41,17 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
     }
   }
 
-  $scope.isOutOfStock = function(product) {
-    if(product.quantity === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   $scope.setCategory = function(productId, productCategory) {    
     var item = ngCart.getItemById(productId.toString());
+    
     if(item) {
       item.setData(productCategory);
     }
+  }
+
+  $scope.setDiscount = function(num) {
+    $scope.discount = num;
+    ngCart.setDiscount($scope.discount);
   }
 
   $scope.isEligible = function($event) {
@@ -60,13 +66,12 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
       $scope.apply10Discount(totalPrice);
     } else if(discountType === '15£-discount') {
       $scope.apply15Discount(cartItems, totalPrice);
-    }
+    } 
   }
 
   $scope.applyOffOrderDiscount = function(cartItems) {
     if(cartItems.length > 0) {
-      $scope.discount = -5;
-      ngCart.setDiscount($scope.discount);
+      $scope.setDiscount(-5);
     } else {
       $scope.notEligible = true;
     }
@@ -74,8 +79,7 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
 
   $scope.apply10Discount = function(totalPrice) {
     if(totalPrice > 50) {
-      $scope.discount = -10;
-      ngCart.setDiscount($scope.discount);
+      $scope.setDiscount(-10);
     } else {
       $scope.notEligible = true;
     }
@@ -83,8 +87,7 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
 
   $scope.apply15Discount = function(cartItems, totalPrice) {
     if($scope.hasFootwear(cartItems) && totalPrice > 75) {
-      $scope.discount = -15;
-      ngCart.setDiscount($scope.discount);
+      $scope.setDiscount(-15);
     } else {
       $scope.notEligible = true;
     }
@@ -107,8 +110,7 @@ app.controller('shopController', function($scope, $http, ngCart, ngCartItem) {
   }
 
   $scope.$on('ngCart:change', function() {
-    $scope.discount = 0;
-    ngCart.setDiscount($scope.discount);
+    $scope.setDiscount(0);
   });
 
   $(document).ready(function() {
