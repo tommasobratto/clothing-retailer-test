@@ -25,7 +25,8 @@ describe('ClothMaker app', function() {
     it('should be able to show if an item is out of stock', function() {
       expect(productOutOfStock.isPresent()).toEqual(true);
     });
-  }); 
+  });
+  
   describe('discount buttons', function() {
     var discountButton;
     var notEligibleMessage;

@@ -1,7 +1,7 @@
 var should = require('chai').should();
 var request = require('supertest');
 var app = require('express')();
-var catalogue = require('../products.json')
+var catalogue = require('../storage/products.json')
 
 describe('API server', function() {
 
@@ -16,5 +16,4 @@ describe('API server', function() {
       .expect('Content-Type', 'application/json; charset=utf-8')
       .expect(200, done)
   });
-
 });
